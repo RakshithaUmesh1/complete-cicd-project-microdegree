@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-southeast-1"
+  region = "us-east-1"
 }
 
 resource "aws_vpc" "microdegree_vpc" {
@@ -14,7 +14,7 @@ resource "aws_subnet" "microdegree_subnet" {
   count = 2
   vpc_id                  = aws_vpc.microdegree_vpc.id
   cidr_block              = cidrsubnet(aws_vpc.microdegree_vpc.cidr_block, 8, count.index)
-  availability_zone       = element(["ap-southeast-1a", "ap-southeast-1b"], count.index)
+  availability_zone       = element(["us-east-1a", "us-east-1b"], count.index)
   map_public_ip_on_launch = true
 
   tags = {
@@ -88,7 +88,7 @@ resource "aws_security_group" "microdegree_node_sg" {
 
 resource "aws_eks_cluster" "microdegree" {
   name     = "microdegree-cluster"
-  role_arn = aws_iam_role.microdegree_cluster_roles.arn
+  role_arn = aws_iam_role.microdegree_cluster_role.arn
 
   vpc_config {
     subnet_ids         = aws_subnet.microdegree_subnet[*].id
@@ -99,7 +99,7 @@ resource "aws_eks_cluster" "microdegree" {
 resource "aws_eks_node_group" "microdegree" {
   cluster_name    = aws_eks_cluster.microdegree.name
   node_group_name = "microdegree-node-group"
-  node_role_arn   = aws_iam_role.microdegree_node_group_roles.arn
+  node_role_arn   = aws_iam_role.microdegree_node_group_role.arn
   subnet_ids      = aws_subnet.microdegree_subnet[*].id
 
   scaling_config {
@@ -116,8 +116,8 @@ resource "aws_eks_node_group" "microdegree" {
   }
 }
 
-resource "aws_iam_role" "microdegree_cluster_roles" {
-  name = "microdegree-cluster-roles"
+resource "aws_iam_role" "microdegree_cluster_role" {
+  name = "microdegree-cluster-role"
 
   assume_role_policy = <<EOF
 {
@@ -136,12 +136,12 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "microdegree_cluster_role_policy" {
-  role       = aws_iam_role.microdegree_cluster_roles.name
+  role       = aws_iam_role.microdegree_cluster_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 
-resource "aws_iam_role" "microdegree_node_group_roles" {
-  name = "microdegree-node-group-roles"
+resource "aws_iam_role" "microdegree_node_group_role" {
+  name = "microdegree-node-group-role"
 
   assume_role_policy = <<EOF
 {
@@ -160,17 +160,16 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "microdegree_node_group_role_policy" {
-  role       = aws_iam_role.microdegree_node_group_roles.name
+  role       = aws_iam_role.microdegree_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
 }
 
 resource "aws_iam_role_policy_attachment" "microdegree_node_group_cni_policy" {
-  role       = aws_iam_role.microdegree_node_group_roles.name
+  role       = aws_iam_role.microdegree_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
 }
 
 resource "aws_iam_role_policy_attachment" "microdegree_node_group_registry_policy" {
-  role       = aws_iam_role.microdegree_node_group_roles.name
+  role       = aws_iam_role.microdegree_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
-
