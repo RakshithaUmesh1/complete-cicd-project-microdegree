@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "instance-1" {
-  ami  = "ami-08a6efd148b1f7504"
+  ami  = "ami-08a6efd148b1f7504" ##amazon machine image
   instance_type = "t2.micro"
   security_groups = ["default"]
   key_name = "jun26"
@@ -13,7 +13,7 @@ resource "aws_instance" "instance-1" {
 }
 
 resource "aws_instance" "instance-2" {
-  ami  = "ami-08a6efd148b1f7504"
+  ami  = "ami-08a6efd148b1f7504" ##amazon machine image
   instance_type = "t2.micro"
   security_groups = ["default"]
   key_name = "jun26"
