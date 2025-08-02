@@ -99,7 +99,7 @@ resource "aws_eks_cluster" "microdegree" {
 resource "aws_eks_node_group" "microdegree" {
   cluster_name    = aws_eks_cluster.microdegree.name
   node_group_name = "microdegree-node-group"
-  node_role_arn   = aws_iam_role.microdegree_node_group_role1.arn
+  node_role_arn   = aws_iam_role.microdegree_node_group_role.arn
   subnet_ids      = aws_subnet.microdegree_subnet[*].id
 
   scaling_config {
@@ -116,7 +116,7 @@ resource "aws_eks_node_group" "microdegree" {
   }
 }
 
-resource "aws_iam_role" "microdegree_cluster_role1" {
+resource "aws_iam_role" "microdegree_cluster_role" {
   name = "microdegree-cluster-role"
 
   assume_role_policy = <<EOF
@@ -136,12 +136,12 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "microdegree_cluster_role_policy" {
-  role       = aws_iam_role.microdegree_cluster_role1.name
+  role       = aws_iam_role.microdegree_cluster_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 
-resource "aws_iam_role" "microdegree_node_group_role1" {
-  name = "microdegree-node-group-role1"
+resource "aws_iam_role" "microdegree_node_group_role" {
+  name = "microdegree-node-group-role"
 
   assume_role_policy = <<EOF
 {
@@ -160,17 +160,17 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "microdegree_node_group_role_policy" {
-  role       = aws_iam_role.microdegree_node_group_role1.name
+  role       = aws_iam_role.microdegree_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
 }
 
 resource "aws_iam_role_policy_attachment" "microdegree_node_group_cni_policy" {
-  role       = aws_iam_role.microdegree_node_group_role1.name
+  role       = aws_iam_role.microdegree_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
 }
 
 resource "aws_iam_role_policy_attachment" "microdegree_node_group_registry_policy" {
-  role       = aws_iam_role.microdegree_node_group_role1.name
+  role       = aws_iam_role.microdegree_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
 
