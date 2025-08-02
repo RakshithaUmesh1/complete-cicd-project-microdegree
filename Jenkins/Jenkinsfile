@@ -5,7 +5,7 @@ pipeline {
         // Parametrizing the environment variables
         DOCKER_TAG = "${BUILD_NUMBER}"
         IMAGE_NAME = "rakshithaghyanesh/fullstack"
-        AWS_REGION = "ap-south-1"
+        AWS_REGION = "ap-southeast-1"
         SONAR_URL = 'http://3.84.96.251:9000/'  // SonarQube URL
         GIT_REPO_NAME = "complete-cicd-project-microdegree"
         GIT_USER_NAME = "RakshithaUmesh1"
