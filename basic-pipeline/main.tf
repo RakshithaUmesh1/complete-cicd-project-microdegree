@@ -8,7 +8,7 @@ resource "aws_instance" "instance-1" {
     instance_type = "t2.micro"
     count = "1"
     security_groups = ["default"]
-    key_name = "project"
+    key_name = "my-key"
     user_data = file("server-script.sh")
     tags = {
       Name = "versioning"
