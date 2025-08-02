@@ -116,7 +116,7 @@ resource "aws_eks_node_group" "microdegree" {
   }
 }
 
-resource "aws_iam_role" "microdegree_cluster_role" {
+resource "aws_iam_role" "microdegree_cluster_role1" {
   name = "microdegree-cluster-role"
 
   assume_role_policy = <<EOF
