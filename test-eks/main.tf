@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-south-1"
+  region = "us-east-1"
 }
 
 resource "aws_vpc" "microdegree_vpc" {
@@ -173,4 +173,3 @@ resource "aws_iam_role_policy_attachment" "microdegree_node_group_registry_polic
   role       = aws_iam_role.microdegree_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
-
