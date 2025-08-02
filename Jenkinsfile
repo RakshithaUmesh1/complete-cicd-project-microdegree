@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_TAG = "20250801"
         IMAGE_NAME = "rakshithaghyanesh/fullstack"
-        AWS_REGION = "ap-southeast-1"
+        AWS_REGION = "us-east-1"
         CLUSTER_NAME = "microdegree-cluster"
     }
 
@@ -119,7 +119,7 @@ pipeline {
                     subject: "${jobName} - Build ${buildNumber} - ${pipelineStatus.toUpperCase()}",
                     body: body,
                     to: 'deepumadiwalzz720@gmail.com',
-                    from: 'deepumadiwalzz720t@gmail.com',
+                    from: 'deepumadiwalzz720@gmail.com',
                     replyTo: 'deepumadiwalzz720@gmail.com',
                     mimeType: 'text/html',
                     attachmentsPattern: 'trivy-image-report.html'
