@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_TAG = "20250801"
-        IMAGE_NAME = "manojkrishnappa/fullstack"
+        IMAGE_NAME = "rakshithaghyanesh/fullstack"
         AWS_REGION = "us-east-1"
         CLUSTER_NAME = "microdegree-cluster"
     }
@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/ManojKRISHNAPPA/complete-cicd-project-microdegree.git'
+                git branch: 'main', url: 'https://github.com/RakshithaUmesh1/complete-cicd-project-microdegree.git'
             }
         }
 
@@ -43,7 +43,7 @@ pipeline {
         stage('Docker Image Scan') {
             steps {
                 script {
-                    sh "trivy image --format table -o trivy-image-report.html manojkrishnappa/fullstack:20250801"
+                    sh "trivy image --format table -o trivy-image-report.html rakshithaghyanesh/fullstack:20250801"
                 }
             }
         }
@@ -118,9 +118,9 @@ pipeline {
                 emailext (
                     subject: "${jobName} - Build ${buildNumber} - ${pipelineStatus.toUpperCase()}",
                     body: body,
-                    to: 'rohitpatil.cse@gmail.com,manojdevopstest@gmail.com',
-                    from: 'manojdevopstest@gmail.com',
-                    replyTo: 'manojdevopstest@gmail.com',
+                    to: 'deepumadiwalzz720@gmail.com',
+                    from: 'deepumadiwalzz720t@gmail.com',
+                    replyTo: 'deepumadiwalzz720@gmail.com',
                     mimeType: 'text/html',
                     attachmentsPattern: 'trivy-image-report.html'
                 )
