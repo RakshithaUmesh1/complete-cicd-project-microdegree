@@ -11,7 +11,8 @@ This is Simple ci-cd project
 ![img_3.png](img_3.png)
 
 ```yaml
-provider "aws" {
+provider "aws" {![Uploading image (13).png…]()
+
     region = "us-east-1"
     access_key = "xxx"
     secret_key = "xx"
