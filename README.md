@@ -1,10 +1,14 @@
 # complete-cicd-project-microdegree
 
-# CI-CD
+# CI-CD![Uploading img.png…]()
+
 This is Simple ci-cd project
 
 # Architecture for application
-![img.png]([img.png](https://github.com/ManojKRISHNAPPA/complete-cicd-project-microdegree/blob/main/img.png))
+
+![Uploading img.png…]()
+
+
 # Create a EC2 instance via terraform or we can do manually also  
 
 # Security groups inbound list
