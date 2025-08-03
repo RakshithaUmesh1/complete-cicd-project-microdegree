@@ -1,10 +1,11 @@
 # complete-cicd-project-microdegree
 
-# CI-CD![Uploading img.png…]()
+# CI-CD<img width="1498" height="591" alt="img" src="https://github.com/user-attachments/assets/dbced6e8-af89-4017-bf19-1a1db7d37686" />
 
 This is Simple ci-cd project
 
 # Architecture for application
+
 
 ![Uploading img.png…]()
 
